@@ -14,28 +14,28 @@ class VendingMachine
     # 100円と500円だけ受け付ける
     if i != 100 && i != 500 then
       @charge += i
-      nil
+      return nil
     end
 
     if kind_of_drink == Drink::COKE && @quantity_of_coke == 0 then
       @charge += i
-      nil
+      return nil
     elsif kind_of_drink == Drink::DIET_COKE && @quantity_of_diet_coke == 0 then
       @charge += i
-      nil
+      return nil
     elsif kind_of_drink == Drink::TEA && @quantity_of_tea == 0 then
       @charge += i
-      nil
+      return nil
     end
 
     # 釣り銭不足
     if i == 500 && @number_of_100yen < 4 then
       @charge += i
-      nil
+      return nil
     end
 
     if i == 100 then
-      number_of_100yen += 1
+      @number_of_100yen += 1
     elsif i == 500 then
       # 400円のお釣り
       @charge += (i - 100)
