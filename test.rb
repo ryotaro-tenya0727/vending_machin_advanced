@@ -4,20 +4,20 @@ require './drink'
 
 class VendingMachineTest < Test::Unit::TestCase
   def setup
-    @vm = VendingMachine.new()
+    @vm = VendingMachine.new
   end
 
   def test500円でコーラを購入
     drink = @vm.buy(500, Drink::COKE)
-    charge = @vm.refund()
+    charge = @vm.refund
 
-    assert_equal(Drink::COKE, drink.kind())
+    assert_equal(Drink::COKE, drink.kind)
     assert_equal(400, charge)
   end
 
   def test10円ではコーラは買えない
     drink = @vm.buy(10, Drink::COKE)
-    charge = @vm.refund()
+    charge = @vm.refund
 
     assert_equal(nil, drink)
     assert_equal(10, charge)
@@ -30,7 +30,7 @@ class VendingMachineTest < Test::Unit::TestCase
     @vm.buy(100, Drink::COKE)
     @vm.buy(100, Drink::COKE)
     drink = @vm.buy(100, Drink::COKE)
-    charge = @vm.refund()
+    charge = @vm.refund
 
     assert_equal(nil, drink)
     assert_equal(100, charge)
@@ -43,7 +43,7 @@ class VendingMachineTest < Test::Unit::TestCase
     @vm.buy(100, Drink::DIET_COKE)
     @vm.buy(100, Drink::DIET_COKE)
     drink = @vm.buy(100, Drink::DIET_COKE)
-    charge = @vm.refund()
+    charge = @vm.refund
 
     assert_equal(nil, drink)
     assert_equal(100, charge)
@@ -56,7 +56,7 @@ class VendingMachineTest < Test::Unit::TestCase
     @vm.buy(100, Drink::TEA)
     @vm.buy(100, Drink::TEA)
     drink = @vm.buy(100, Drink::TEA)
-    charge = @vm.refund()
+    charge = @vm.refund
 
     assert_equal(nil, drink)
     assert_equal(100, charge)
@@ -64,11 +64,11 @@ class VendingMachineTest < Test::Unit::TestCase
 
   def test釣り銭が足りないときにコーラは買えない
     @vm.buy(500, Drink::COKE)
-    @vm.refund()
+    @vm.refund
     @vm.buy(500, Drink::COKE)
-    @vm.refund()
+    @vm.refund
     drink = @vm.buy(500, Drink::COKE)
-    charge = @vm.refund()
+    charge = @vm.refund
 
     assert_equal(nil, drink)
     assert_equal(500, charge)

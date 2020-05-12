@@ -1,12 +1,12 @@
 require './drink'
 require './vending_machine'
 
-vm = VendingMachine.new()
+vm = VendingMachine.new
 
 drink = vm.buy(500, Drink::COKE)
-charge = vm.refund()
+charge = vm.refund
 
-if drink != nil && drink.kind() == Drink::COKE then
+if drink != nil && drink.kind == Drink::COKE then
   print "コーラを購入しました。"
   print "お釣りは#{charge}です"
 else
