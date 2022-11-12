@@ -10,37 +10,37 @@ class VendingMachine
     @change = 0 # お釣り
   end
 
-  def buy(i, kind_of_drink)
+  def buy(payment, kind_of_drink)
     # 100円と500円だけ受け付ける
-    if i != 100 && i != 500
-      @change += i
+    if payment != 100 && payment != 500
+      @change += payment
       return nil
     end
 
     if kind_of_drink == Drink::COKE && @quantity_of_coke == 0
-      @change += i
+      @change += payment
       return nil
     elsif kind_of_drink == Drink::DIET_COKE && @quantity_of_diet_coke == 0 then
-      @change += i
+      @change += payment
       return nil
     elsif kind_of_drink == Drink::TEA && @quantity_of_tea == 0 then
-      @change += i
+      @change += payment
       return nil
     end
 
     # 釣り銭不足
-    if i == 500 && @number_of_100yen < 4
-      @change += i
+    if payment == 500 && @number_of_100yen < 4
+      @change += payment
       return nil
     end
 
-    if i == 100
+    if payment == 100
       @number_of_100yen += 1
-    elsif i == 500 then
+    elsif payment == 500 then
       # 400円のお釣り
-      @change += (i - 100)
+      @change += (payment - 100)
       # 100円玉を釣り銭に使える
-      @number_of_100yen -= (i - 100) / 100
+      @number_of_100yen -= (payment - 100) / 100
     end
 
     if kind_of_drink == Drink::COKE
@@ -61,4 +61,3 @@ class VendingMachine
   end
 
 end
-
