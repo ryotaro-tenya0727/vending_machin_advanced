@@ -1,6 +1,7 @@
 require 'test/unit'
 require './vending_machine'
-require './drink'
+require './drink_type'
+require './coin'
 
 class VendingMachineTest < Test::Unit::TestCase
   def setup
@@ -8,11 +9,11 @@ class VendingMachineTest < Test::Unit::TestCase
   end
 
   def test500円でコーラを購入
-    drink = @vm.buy(500, Drink::COKE)
+    drink = @vm.buy(Coin::FIVE_HUNDRED, DrinkType::COKE)
     change = @vm.refund
 
-    assert_equal(Drink::COKE, drink.kind)
-    assert_equal(400, change)
+    assert_equal(DrinkType::COKE, drink.kind)
+    assert_equal([Coin::ONE_HUNDRED] * 4, change)
   end
 
   def test10円ではコーラは買えない
@@ -75,4 +76,3 @@ class VendingMachineTest < Test::Unit::TestCase
   end
 
 end
-
