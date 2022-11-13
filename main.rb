@@ -1,7 +1,7 @@
 require './drink'
 require './drink_type'
 require './vending_machine'
-
+require 'pry'
 vm = VendingMachine.new
 
 drink = vm.buy(Coin::FIVE_HUNDRED, DrinkType::COKE)
@@ -9,7 +9,7 @@ charge = vm.refund
 
 if drink != nil && drink.coke?
   print "コーラを購入しました。"
-  print "お釣りは#{charge}です"
+  print "お釣りは#{charge.to_s}円です"
 else
   raise StandardError.new("コーラ買えんかった(´ﾟдﾟ｀)")
 end
