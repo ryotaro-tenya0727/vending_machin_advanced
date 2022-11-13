@@ -25,7 +25,7 @@ class Change
   end
 
   def to_s
-    @coins.sum{|c| c}.to_s
+    @coins.sum{|c| c.to_i}.to_s
   end
 
 end

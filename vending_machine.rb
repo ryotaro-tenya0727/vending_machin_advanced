@@ -21,19 +21,19 @@ class VendingMachine
       return nil
     end
 
-    if kind_of_drink == DrinkType::COKE && @stock_of_coke.quantity == 0
+    if kind_of_drink == DrinkType::COKE && @stock_of_coke.empty?
       @change.add(payment)
       return nil
-    elsif kind_of_drink == DrinkType::DIET_COKE && @stock_of_diet_coke.quantity == 0 then
+    elsif kind_of_drink == DrinkType::DIET_COKE && @stock_of_diet_coke.empty? then
       @change.add(payment)
       return nil
-    elsif kind_of_drink == DrinkType::TEA && @stock_of_tea.quantity == 0 then
+    elsif kind_of_drink == DrinkType::TEA && @stock_of_tea.empty? then
       @change.add(payment)
       return nil
     end
 
     # 釣り銭不足
-    if payment == Coin::FIVE_HUNDRED && @stock_of_100yen.size < 4
+    if payment == Coin::FIVE_HUNDRED && @stock_of_100yen.not_have_change?
       @change.add(payment)
       return nil
     end
@@ -42,7 +42,7 @@ class VendingMachine
       @stock_of_100yen.add(payment)
     elsif payment == Coin::FIVE_HUNDRED then
       # 400円のお釣り
-      @change.add_all(calculate_change)
+      @change.add_all(@stock_of_100yen.take_out_change)
     end
 
     if kind_of_drink == DrinkType::COKE
@@ -60,14 +60,6 @@ class VendingMachine
     result = @change.clone
     @change.clear
     result
-  end
-
-  def calculate_change
-    coins = []
-    4.times do
-      coins.push(@stock_of_100yen.pop)
-    end
-    coins
   end
 
 end

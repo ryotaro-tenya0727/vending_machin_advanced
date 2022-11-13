@@ -3,7 +3,15 @@ class Drink
     @kind = kind
   end
 
-  def kind()
-    @kind
+  def coke?
+    @kind == DrinkType::COKE
+  end
+
+  def diet_coke?
+    @kind == DrinkType::DIET_COKE
+  end
+
+  def tea?
+    @kind == DrinkType::TEA
   end
 end
