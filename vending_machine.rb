@@ -12,7 +12,7 @@ class VendingMachine
 
     @coin_mech.put(payment)
 
-    # 釣り銭不足
+    # 釣り銭不足aa
     if @coin_mech.not_have_change?
       return nil
     end
