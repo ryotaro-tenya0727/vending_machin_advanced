@@ -1,7 +1,6 @@
-require './drink'
-require './drink_type'
+require './drink/drink'
+require './drink/drink_type'
 require './vending_machine'
-require 'pry'
 vm = VendingMachine.new
 
 drink = vm.buy(Coin::FIVE_HUNDRED, DrinkType::COKE)

@@ -1,4 +1,4 @@
-require './money'
+require './money/money'
 
 class Coin
   ONE_HUNDRED = Money.new(100)
