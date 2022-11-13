@@ -37,7 +37,7 @@ class VendingMachineTest < Test::Unit::TestCase
     assert_equal([Coin::ONE_HUNDRED], change)
   end
 
-  def testダイエットコーラの在庫が無いときにコーラは買えない
+  def testダイエットコーラの在庫が無いときにダイエットコーラは買えない
     @vm.buy(Coin::ONE_HUNDRED, DrinkType::DIET_COKE)
     @vm.buy(Coin::ONE_HUNDRED, DrinkType::DIET_COKE)
     @vm.buy(Coin::ONE_HUNDRED, DrinkType::DIET_COKE)
@@ -50,7 +50,7 @@ class VendingMachineTest < Test::Unit::TestCase
     assert_equal([Coin::ONE_HUNDRED], change)
   end
 
-  def testお茶の在庫が無いときにコーラは買えない
+  def testお茶の在庫が無いときにお茶は買えない
     @vm.buy(Coin::ONE_HUNDRED, DrinkType::TEA)
     @vm.buy(Coin::ONE_HUNDRED, DrinkType::TEA)
     @vm.buy(Coin::ONE_HUNDRED, DrinkType::TEA)
